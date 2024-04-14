@@ -2,18 +2,11 @@
 using Application.DTOs;
 using Application.Services.Interface;
 using Application.Validators;
-using Application.DTOs;
 using AutoMapper;
 using Domain.Entities;
-using Domain.Enums;
 using Domain.Models;
 using FluentValidation;
 using Infrastructure.Repositories.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services.Implementation
 {

@@ -1,6 +1,6 @@
 ﻿using Application.DTOs;
-using FluentValidation;
 using Domain.Enums;
+using FluentValidation;
 namespace Application.Validators
 {
     public class FilterDTOValidator : BaseValidator<FilterDto>

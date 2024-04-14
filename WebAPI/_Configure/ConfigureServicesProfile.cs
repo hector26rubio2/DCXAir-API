@@ -1,6 +1,5 @@
 ﻿using Application.AutoMapperProfiles;
 using AutoMapper;
-using Domain.Models;
 
 namespace WebAPI._Configure
 {

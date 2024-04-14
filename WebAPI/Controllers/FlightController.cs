@@ -1,8 +1,8 @@
-﻿using Application.Services.Interface;
+﻿using Application.DTOs;
+using Application.Services.Interface;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Helpers;
-using FluentValidation;
-using Application.DTOs;
 
 namespace WebAPI.Controllers
 {
