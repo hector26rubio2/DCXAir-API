@@ -1,5 +1,4 @@
 ﻿using Aplication.AutoMapperProfiles;
-using Application.AutoMapperProfiles;
 using AutoMapper;
 
 namespace WebAPI._Configure
@@ -10,9 +9,10 @@ namespace WebAPI._Configure
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<JourneyProfile>();
+           
                 cfg.AddProfile<TransportProfile>();
                 cfg.AddProfile<FlightProfile>();
+                cfg.AddProfile<FilterProfile>();
 
 
             });
