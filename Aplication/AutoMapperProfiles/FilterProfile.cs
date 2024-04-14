@@ -1,8 +1,8 @@
-﻿using Aplication.DTOs;
+﻿using Application.DTOs;
 using AutoMapper;
 using Domain.Models;
 
-namespace Aplication.AutoMapperProfiles
+namespace Application.AutoMapperProfiles
 {
     public class FilterProfile : Profile
     {

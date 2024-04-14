@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Aplication.DTOs
+namespace Application.DTOs
 {
     public class FilterDto
     {

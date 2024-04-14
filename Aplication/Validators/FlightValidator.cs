@@ -1,5 +1,5 @@
-﻿using Aplication.DTOs;
-using Aplication.Exceptions;
+﻿using Application.DTOs;
+using Application.Exceptions;
 using Application.DTOs;
 using Domain.Entities;
 using FluentValidation;
@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Validators
+namespace Application.Validators
 {
-    public class FlightValidator : AbstractValidator<FlightDto>
+    public class FlightValidator : BaseValidator<FlightDto>
     {
         public FlightValidator()
         {
@@ -27,15 +27,6 @@ namespace Aplication.Validators
 
             RuleFor(f => f.Transport)
                 .SetValidator(new TransportValidator());
-        }
-        public override ValidationResult Validate(ValidationContext<FlightDto> context)
-        {
-            var validationResult = base.Validate(context);
-            if (!validationResult.IsValid)
-            {
-                throw new ApplicationValidationException(validationResult.Errors);
-            }
-            return validationResult;
         }
     }
 }

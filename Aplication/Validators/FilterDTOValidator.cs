@@ -1,17 +1,9 @@
-﻿using Aplication.DTOs;
-using Aplication.Exceptions;
-using Application.DTOs;
+﻿using Application.DTOs;
 using FluentValidation;
-using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aplication.Validators
+using Domain.Enums;
+namespace Application.Validators
 {
-    public class FilterDTOValidator : AbstractValidator<FilterDto>
+    public class FilterDTOValidator : BaseValidator<FilterDto>
     {
         public FilterDTOValidator()
         {
@@ -28,20 +20,11 @@ namespace Aplication.Validators
             RuleFor(x => x.CurrencyType)
                 .IsInEnum().WithMessage("El tipo de moneda no es válido.");
             RuleFor(x => x.FlightType)
-              .Must(x => x.Equals("roundtrip", StringComparison.OrdinalIgnoreCase) ||
-                         x.Equals("oneway", StringComparison.OrdinalIgnoreCase))
+              .Must(x => x.Equals(FlightType.ROUND_TRIP, StringComparison.OrdinalIgnoreCase) ||
+                         x.Equals(FlightType.ONE_WAY, StringComparison.OrdinalIgnoreCase))
               .WithMessage("El tipo de vuelo debe ser 'roundtrip' o 'oneway'.");
         }
 
-        public override ValidationResult Validate(ValidationContext<FilterDto> context)
-        {
-            var validationResult = base.Validate(context);
-            if (!validationResult.IsValid)
-            {
-                throw new ApplicationValidationException(validationResult.Errors);
-            }
-            return validationResult;
-        }
     }
 }
 
