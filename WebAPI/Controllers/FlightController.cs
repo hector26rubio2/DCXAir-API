@@ -1,12 +1,9 @@
-﻿using Aplication.Services.Interface;
-using Domain.Entities;
-using Domain.Enums;
-using Microsoft.AspNetCore.Http;
+﻿using Application.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Helpers;
 using FluentValidation;
 using Application.DTOs;
-using Aplication.DTOs;
+
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -75,8 +72,8 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var flights = await _flightService.GetFlightsByTypeAsync(type);
-                return Ok(new ApiResponse<List<FlightDto>>(flights, "Flights retrieved successfully."));
+                var journeys = await _flightService.GetFlightsByTypeAsync(type);
+                return Ok(new ApiResponse<List<JourneyDto>>(journeys, "Flights retrieved successfully."));
             }
             catch (ValidationException ex)
             {
