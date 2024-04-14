@@ -11,7 +11,7 @@ namespace Infrastructure.Repositories.Interface
 {
     public interface IFlightRepository
     {
-        Task<List<Flight>> GetFlightsByTypeAsync(Filter filter);
+        Task<List<Journey>> GetFlightsByTypeAsync(Filter filter);
 
         Task AddRangeAsync(List<Flight> flights);
         Task<List<string>> GetOriginAirportsAsync();

@@ -1,6 +1,9 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using Domain.Models;
 using Infrastructure.Data;
+using Infrastructure.Helpers;
+using Infrastructure.Helpers.Interfaces;
 using Infrastructure.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -16,25 +19,42 @@ namespace Infrastructure.Repositories.Implementation
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<FlightRepository> _logger;
-        public FlightRepository(ApplicationDbContext context, ILogger<FlightRepository> logger)
+        private readonly IFlightsByType _flightsByType;
+
+        public FlightRepository(ApplicationDbContext context, ILogger<FlightRepository> logger, IFlightsByType flightsByType)
         {
             _context = context;
             _logger = logger;
+            _flightsByType = flightsByType;
         }
 
-       
 
 
-        
 
-        public async Task<List<Flight>> GetFlightsByTypeAsync(Filter filter)
+
+
+        public async Task<List<Journey>> GetFlightsByTypeAsync(Filter filter)
         {
             try
             {
-                // Implementación para obtener vuelos por tipo (ida o ida y vuelta)
+                var journeys = new List<Journey>();
                 _logger.LogInformation("Obteniendo vuelos por tipo {FlightType}...", filter);
-                // Lógica para filtrar vuelos por tipo desde la fuente de datos
-                return new List<Flight>();
+                var flights =await _context.Flights
+                .Include(flight => flight.Transport)
+                .ToListAsync();
+
+                flights.ForEach(flight => flight.Price = CurrencyConverter.Convert(flight.Price, filter.CurrencyType));
+
+                if (filter.FlightType == FlightType.ONE_WAY)
+                {
+                   journeys =  _flightsByType.GetOneWayFlights(filter.Origin,filter.Destination,flights);
+                }
+                else
+                {
+                    journeys = _flightsByType.GetRoundTripFlights(filter.Origin, filter.Destination, flights);
+                }
+
+                return journeys;
             }
             catch (Exception ex)
             {
