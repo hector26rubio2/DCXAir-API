@@ -45,14 +45,9 @@ namespace Infrastructure.Repositories.Implementation
 
                 flights.ForEach(flight => flight.Price = CurrencyConverter.Convert(flight.Price, filter.CurrencyType));
 
-                if (filter.FlightType == FlightType.ONE_WAY)
-                {
-                   journeys =  _flightsByType.GetOneWayFlights(filter.Origin,filter.Destination,flights);
-                }
-                else
-                {
-                    journeys = _flightsByType.GetRoundTripFlights(filter.Origin, filter.Destination, flights);
-                }
+                journeys = filter.FlightType == FlightType.ONE_WAY ?
+                _flightsByType.GetOneWayFlights(filter.Origin, filter.Destination, flights) :
+                _flightsByType.GetRoundTripFlights(filter.Origin, filter.Destination, flights);
 
                 return journeys;
             }
