@@ -12,4 +12,5 @@ namespace Domain.Enums
         Euro,
         Peso
     }
+
 }

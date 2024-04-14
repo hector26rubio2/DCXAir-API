@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Enums
 {
-    public enum FlightType
+    public struct FlightType
     {
-        OneWay,
-        RoundTrip
+        public const string ONE_WAY = "OneWay";
+        public const string ROUND_TRIP = "RoundTrip";
     }
 }
