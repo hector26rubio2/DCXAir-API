@@ -1,8 +1,5 @@
-using AutoMapper;
 using FluentValidation.AspNetCore;
 using Serilog;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using WebAPI._Configure;
 using WebAPI.Helpers;
 
