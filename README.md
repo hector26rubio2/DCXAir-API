@@ -3,6 +3,9 @@
 ## Descripción
 La prueba técnica para Flyr representa un desafío integral que abarca diversos aspectos del desarrollo de software.La solución se basa en una arquitectura limpia robusta de cuatro capas, que incluye la presentación, aplicación, dominio e infraestructura. Utilizamos tecnologías modernas y herramientas eficientes para garantizar un desarrollo ágil y de alta calidad.
 
+## Versión
+.NET 8
+
 ## Arquitectura Limpia
 El proyecto sigue una arquitectura limpia de cuatro capas para una separación clara de responsabilidades y modularidad.
 
