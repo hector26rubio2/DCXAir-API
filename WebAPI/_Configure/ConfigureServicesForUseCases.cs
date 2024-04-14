@@ -1,6 +1,8 @@
-﻿using Aplication.Services.Implementation;
-using Aplication.Services.Interface;
-using Aplication.Validators;
+﻿using Application.Services.Implementation;
+using Application.Services.Interface;
+using Application.Validators;
+using Infrastructure.Helpers.Implementation;
+using Infrastructure.Helpers.Interfaces;
 using Infrastructure.Repositories.Implementation;
 using Infrastructure.Repositories.Interface;
 
@@ -12,6 +14,8 @@ namespace WebAPI._Configure
         {
             // Capa de Infraestructura
             services.AddScoped<IFlightRepository, FlightRepository>();
+            services.AddScoped<IFlightsByType, FlightsByType>();
+           
 
             // Capa de Aplicación
             services.AddScoped<IFlightService, FlightService>();
