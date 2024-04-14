@@ -7,6 +7,8 @@ namespace WebAPI._Configure
         {
 
             services.AddInfrastructure(configuration);
+            services.AddUseCases(configuration);
+            services.AddProfile();
 
         }
     }

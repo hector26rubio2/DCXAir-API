@@ -12,13 +12,11 @@ namespace Infrastructure
 {
     public static class DependencyInjection
     {
-        public static void  AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(connectionString));
-
-
         }
     }
 }

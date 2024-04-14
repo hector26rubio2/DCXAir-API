@@ -9,7 +9,6 @@ namespace Infrastructure.Data
         public DbSet<Flight> Flights { get; set; }
         public DbSet<Transport> Transports { get; set; }
 
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
