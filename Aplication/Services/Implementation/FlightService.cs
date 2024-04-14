@@ -1,7 +1,7 @@
 ﻿
-using Aplication.DTOs;
-using Aplication.Services.Interface;
-using Aplication.Validators;
+using Application.DTOs;
+using Application.Services.Interface;
+using Application.Validators;
 using Application.DTOs;
 using AutoMapper;
 using Domain.Entities;
@@ -15,13 +15,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Services.Implementation
+namespace Application.Services.Implementation
 {
     public class FlightService : IFlightService
     {
         private readonly IFlightRepository _flightRepository;
         private readonly IMapper _mapper;
-  
+
 
         private readonly FilterDTOValidator _filterValidator;
 
@@ -30,20 +30,20 @@ namespace Aplication.Services.Implementation
             _flightRepository = flightRepository;
             _mapper = mapper;
             _filterValidator = filterValidator;
-            }
+        }
 
-            public async Task AddFlightsAsync(List<FlightDto> flightDtos)
+        public async Task AddFlightsAsync(List<FlightDto> flightDtos)
         {
             var fightValidator = new FlightValidator();
             var transportValidator = new TransportValidator();
 
             foreach (var flightDto in flightDtos)
             {
-               
+
 
                 var validationResult = await fightValidator.ValidateAsync(flightDto);
 
-            
+
                 if (!validationResult.IsValid)
                 {
                     throw new ValidationException(validationResult.Errors);
@@ -73,17 +73,18 @@ namespace Aplication.Services.Implementation
             return await _flightRepository.GetDestinationAirportsAsync();
         }
 
-        public async Task<List<FlightDto>> GetFlightsByTypeAsync(FilterDto filterDto)
+        public async Task<List<JourneyDto>> GetFlightsByTypeAsync(FilterDto filterDto)
         {
-                var validationResult = await _filterValidator.ValidateAsync(filterDto);
-                if (!validationResult.IsValid)
-                {
-                    throw new ValidationException(validationResult.Errors);
-                }
-
-                var filter = _mapper.Map<Filter>(filterDto);
-                var flights = await _flightRepository.GetFlightsByTypeAsync(filter);
-                return _mapper.Map<List<FlightDto>>(flights);
+            var validationResult = await _filterValidator.ValidateAsync(filterDto);
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors);
             }
+
+            var filter = _mapper.Map<Filter>(filterDto);
+           
+            var flights = await _flightRepository.GetFlightsByTypeAsync(filter);
+            return _mapper.Map<List<JourneyDto>>(flights);
+        }
     }
 }

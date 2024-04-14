@@ -22,7 +22,7 @@ namespace Application.Validators
             RuleFor(x => x.FlightType)
               .Must(x => x.Equals(FlightType.ROUND_TRIP, StringComparison.OrdinalIgnoreCase) ||
                          x.Equals(FlightType.ONE_WAY, StringComparison.OrdinalIgnoreCase))
-              .WithMessage("El tipo de vuelo debe ser 'roundtrip' o 'oneway'.");
+              .WithMessage($"El tipo de vuelo debe ser '{FlightType.ROUND_TRIP}' o '{FlightType.ONE_WAY}'.");
         }
 
     }

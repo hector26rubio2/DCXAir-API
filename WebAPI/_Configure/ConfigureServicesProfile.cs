@@ -1,5 +1,6 @@
-﻿using Aplication.AutoMapperProfiles;
+﻿using Application.AutoMapperProfiles;
 using AutoMapper;
+using Domain.Models;
 
 namespace WebAPI._Configure
 {
@@ -13,6 +14,8 @@ namespace WebAPI._Configure
                 cfg.AddProfile<TransportProfile>();
                 cfg.AddProfile<FlightProfile>();
                 cfg.AddProfile<FilterProfile>();
+                cfg.AddProfile<JourneyProfile>();
+                
 
 
             });
